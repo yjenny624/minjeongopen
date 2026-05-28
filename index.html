@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎈 TO. 하민정 🎈</title>
+    <!-- 아기자기한 글꼴 및 세련된 영문 필기체(Caveat) 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=700&family=Dongle:wght=400;700&family=Gowun+Dodum&family=Gamja+Flower&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fff6f8;
+            --main-pink: #ffb7c5;
+            --dark-pink: #ff7b94;
+            --apple-red: #ff6b8b;
+            --photo-orange: #ff914d; /* 사진 전용 열매 색상 (구분용) */
+            --tree-green: #a8dfb5; 
+            --tree-green-shadow: #8ecda0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Gowun Dodum', sans-serif;
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+        /* 배경 하트 비 효과 */
+        .heart-rain {
+            position: absolute;
+            color: var(--main-pink);
+            font-size: 20px;
+            animation: fall linear infinite;
+            z-index: 0;
+            user-select: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* --- STAGE 1: 인트로 --- */
+        #stage1 { z-index: 10; }
+        .intro-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 183, 197, 0.25);
+            text-align: center;
+            border: 2px solid var(--main-pink);
+            max-width: 360px;
+            width: 90%;
+            z-index: 2;
+        }
+        .intro-box h1 {
+            font-family: 'Dongle', sans-serif;
+            font-size: 64px;
+            margin: 0 0 10px 0;
+            color: var(--dark-pink);
+            line-height: 1;
+        }
+        .intro-box p {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .btn-container {
+            position: relative;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        .btn-yes {
+            background-color: var(--dark-pink);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 123, 148, 0.3);
+            z-index: 5;
+            transition: transform 0.2s;
+        }
+        .btn-yes:hover { transform: scale(1.05); }
+        .btn-no {
+            background-color: #eee;
+            color: #888;
+            position: absolute;
+            z-index: 4;
+            white-space: nowrap;
+            transition: all 0.1s ease-out;
+        }
+
+        /* --- STAGE 2: 메인 콘텐츠 --- */
+        #stage2 {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            padding: 20px;
+        }
+        .main-card {
+            background: white;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 35px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 40px rgba(255, 183, 197, 0.15);
+            border: 1px solid #fff0f2;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        .main-title {
+            font-family: 'Dongle', sans-serif;
+            font-size: 55px;
+            margin: 0;
+            text-align: center;
+            color: var(--dark-pink);
+            line-height: 1;
+        }
+        .main-subtitle {
+            font-size: 14px;
+            color: #a5a5a5;
+            text-align: center;
+            margin: 5px 0 20px 0;
+        }
+
+        /* 🌳 더 많은 열매를 수용하기 위해 넓어진 사과나무 🌳 */
+        .tree-container {
+            position: relative;
+            width: 100%;
+            height: 340px; /* 열매가 많아져서 세로 크기를 확보함 */
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tree-crown {
+            position: absolute;
+            width: 380px; /* 양옆으로 풍성하게 조절 */
+            height: 290px;
+            background: var(--tree-green);
+            border-radius: 50% 50% 48% 48%;
+            top: 10px;
+            box-shadow: inset -15px -15px 0 var(--tree-green-shadow);
+        }
+        .tree-trunk {
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            background: #c59b9b;
+            bottom: 0;
+            border-radius: 5px;
+        }
+        
+        /* 열매 기본 스타일 */
+        .apple {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            user-select: none;
+            z-index: 3;
+        }
+        .apple::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: 8px;
+            width: 6px;
+            height: 4px;
+            background: #76c88b;
+            border-radius: 0 100% 0 100%;
+        }
+        .apple:hover {
+            transform: scale(1.3) rotate(10deg);
+        }
+
+        /* 글귀 전용 사과 (빨강 & 골드) */
+        .apple.text-only {
+            background-color: var(--apple-red);
+            box-shadow: 0 4px 8px rgba(255, 107, 139, 0.3);
+        }
+        .apple.text-only.special {
+            background-color: #ffca28;
+            box-shadow: 0 4px 8px rgba(255, 202, 40, 0.4);
+        }
+
+        /* 사진 전용 열매 (귀여운 체리나 살구 느낌의 오렌지핑크로 매칭) */
+        .apple.photo-only {
+            background-color: var(--photo-orange);
+            box-shadow: 0 4px 8px rgba(255, 145, 77, 0.35);
+        }
+
+        /* 💬 글 / 사진 출력용 통합 툴팁 보드 */
+        .tooltip-box {
+            background: #fff8f9;
+            border: 1.5px dashed var(--main-pink);
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 80px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .tooltip-date {
+            font-weight: bold;
+            color: var(--dark-pink);
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .tooltip-content {
+            font-size: 15px;
+            line-height: 1.5;
+            word-break: keep-all;
+        }
+        /* 사진 띄울 때 스타일 (꽉 차지 않고 예쁜 비전 크기) */
+        .tooltip-img {
+            max-width: 100%;
+            max-height: 230px;
+            border-radius: 15px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            display: none; 
+            object-fit: contain;
+        }
+
+        /* 하단 서명란 */
+        .receipt-footer {
+            border-top: 2px dashed #e0e0e0;
+            padding-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .signature-area {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100%;
+        }
+        .sig-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 2px;
+        }
+        .signature-text {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            color: var(--dark-pink);
+            line-height: 1;
+            margin-right: 5px;
+            display: inline-block;
+        }
+        .ps-text {
+            font-family: 'Gamja Flower', cursive;
+            font-size: 21px;
+            color: #666;
+            margin-top: 8px;
+            text-align: right;
+            line-height: 1.3;
+            word-break: keep-all;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STAGE 1: 인트로 -->
+    <div id="stage1" class="section">
+        <div class="intro-box">
+            <h1>TO. 하민정..</h1>
+            <p>아래 버튼 눌러주세요.</p>
+            <div class="btn-container">
+                <button class="btn btn-yes" id="yes-btn" onclick="openArchive()">계속 보여줘! 💖</button>
+                <button class="btn btn-no" id="runaway-btn">안보여줘도돼 ㅠ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 2: 메인 콘텐츠 -->
+    <div id="stage2" class="section">
+        <div class="main-card">
+            <h1 class="main-title">너와의 추억들 .. 🎈</h1>
+            <div class="main-subtitle">🍎는 글귀, 🍊는 사진 추억이 열려있어!</div>
+            
+            <!-- 🌳 24개의 열매가 균형있게 배치된 대형 사과나무 🌳 -->
+            <div class="tree-container">
+                <div class="tree-crown"></div>
+                <div class="tree-trunk"></div>
+                
+                <!-- [빨강/골드]: 추억 글귀용 사과 12개 -->
+                <div class="apple text-only" style="top: 35px; left: 110px;" onclick="showTextStory(0)">🍎</div>
+                <div class="apple text-only" style="top: 40px; left: 245px;" onclick="showTextStory(1)">🍎</div>
+                <div class="apple text-only" style="top: 85px; left: 60px;" onclick="showTextStory(2)">🍎</div>
+                <div class="apple text-only" style="top: 95px; left: 155px;" onclick="showTextStory(3)">🍎</div>
+                <div class="apple text-only" style="top: 85px; left: 300px;" onclick="showTextStory(4)">🍎</div>
+                <div class="apple text-only" style="top: 145px; left: 85px;" onclick="showTextStory(5)">🍎</div>
+                <div class="apple text-only" style="top: 150px; left: 280px;" onclick="showTextStory(6)">🍎</div>
+                <div class="apple text-only" style="top: 145px; left: 185px;" onclick="showTextStory(7)">🍎</div>
+                <div class="apple text-only" style="top: 205px; left: 120px;" onclick="showTextStory(8)">🍎</div>
+                <div class="apple text-only" style="top: 210px; left: 235px;" onclick="showTextStory(9)">🍎</div>
+                <div class="apple text-only special" style="top: 25px; left: 180px;" onclick="showTextStory(10)">🎂</div>
+                <div class="apple text-only special" style="top: 215px; left: 320px;" onclick="showTextStory(11)">✨</div>
+
+                <!-- [오렌지]: 사진 전용 열매 12개 (글귀용 사이사이에 자연스럽게 섞음) -->
+                <div class="apple photo-only" style="top: 40px; left: 60px;" onclick="showPhotoStory(1)">🍊</div>
+                <div class="apple photo-only" style="top: 35px; left: 300px;" onclick="showPhotoStory(2)">🍊</div>
+                <div class="apple photo-only" style="top: 90px; left: 110px;" onclick="showPhotoStory(3)">🍊</div>
+                <div class="apple photo-only" style="top: 90px; left: 210px;" onclick="showPhotoStory(4)">🍊</div>
+                <div class="apple photo-only" style="top: 95px; left: 255px;" onclick="showPhotoStory(5)">🍊</div>
+                <div class="apple photo-only" style="top: 140px; left: 135px;" onclick="showPhotoStory(6)">🍊</div>
+                <div class="apple photo-only" style="top: 145px; left: 235px;" onclick="showPhotoStory(7)">🍊</div>
+                <div class="apple photo-only" style="top: 150px; left: 330px;" onclick="showPhotoStory(8)">🍊</div>
+                <div class="apple photo-only" style="top: 200px; left: 70px;" onclick="showPhotoStory(9)">🍊</div>
+                <div class="apple photo-only" style="top: 210px; left: 175px;" onclick="showPhotoStory(10)">🍊</div>
+                <div class="apple photo-only" style="top: 260px; left: 140px;" onclick="showPhotoStory(11)">🍊</div>
+                <div class="apple photo-only" style="top: 260px; left: 220px;" onclick="showPhotoStory(12)">🍊</div>
+            </div>
+
+            <!-- 💬 스토리(글 혹은 사진)가 교대로 부드럽게 노출되는 보드 -->
+            <div class="tooltip-box" id="tooltip">
+                <img src="" id="tooltip-img" class="tooltip-img" alt="추억 사진 스냅">
+                <div id="tooltip-text-zone">
+                    <div class="tooltip-content" id="tooltip-text" style="color: #999; font-weight: bold;">🔎 열매를 눌러봐!</div>
+                </div>
+            </div>
+
+            <!-- 🧾 영수증 스타일 하단부 및 지정 필기체 문구 -->
+            <div class="receipt-footer">
+                <div class="signature-area">
+                    <span class="sig-label">Signature</span>
+                    <span class="signature-text">yjenny624</span>
+                    <div class="ps-text">P.S. 항상,, 고마워,, 💗은혜,, 잊지,,않을게</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 글귀 데이터 배열 (사진 키값 제거 완료)
+        const textStories = [
+            { date: "2020년 3월 6일 🎬", text: "분더샵 BTS 논란 있던 역사적인 날ㅋㅋㅋ 우리 이때 진짜 뽀짝하고 웃겼는데 기억나? 항상 생각하면 웃음 벨이야🤣" },
+            { date: "2020년 3월 7일 🎡", text: "코로나 터졌을 때 눈치게임 대성공하며 갔던 에버랜드! 마스크 쓰고도 서로 얼굴만 보면 깔깔거리던 시절이 벌써 한참 전이네 🥺" },
+            { date: "2020년 4월 11일 🌃", text: "민우오빠 생일이라 다 같이 이태원에서 뭉쳤던 날!! 우린 뭉치면 항상 예상치 못한 추억 서사가 꼭 하나씩 생성되는 듯 크크" },
+            { date: "2020년 8월 16일 ⛰️", text: "다 함께 떠났던 대박적 충주의 추억...💚 푸릇푸릇하고 찐하게 놀았던 여름날의 기억은 아직도 사진 보면 어제 일 같아." },
+            { date: "2022년 4월 16일 🚄", text: "나랑 둘이 부산 가준 날 🎶 맛있는 거 잔뜩 먹고 바다 보면서 속 시원하게 힐링 제대로 했던 최고의 베프 여행 패키지!" },
+            { date: "2022년 12월 21일 🤢", text: "우리 집에서 하민정 대차게 술병 난 날ㅋㅋㅋ큐ㅠㅠㅠ 진짜 킹받는데 귀여운 흑역사라 내 기억 속 소중한 보물창고에 평생 소장 예정🔒" },
+            { date: "2023년 1월 5일 🌴", text: "새해 되자마자 같이 제주도로 날아갔던 날! 🌴 비행기 탈 때부터 내내 텐션 폭발해서 힐링 그 자체였던 소중한 겨울 제주!" },
+            { date: "2024년 10월 14일 🏢", text: "우리끼리 분위기 내러 롯데월드타워에서 맛있는 거 푸드파이터처럼 조진 날.. 뷰도 좋고 맛도 좋고 너랑 있어서 완벽했던 하루!" },
+            { date: "2025년 4월 5일 🌸", text: "우리 넷이서 완전체로 떠났던 도쿄 여행! 💗 벚꽃 시즌에 맞춰서 일본 길거리 뽀개고 감성 충전했던 인생 여행지 중 하나!" },
+            { date: "2026년 5월 8일 ⛺", text: "🔥 고마움 지수 별 5개 🔥\n혼자 텐트까지 영차영차 다 쳐놓고 나 캠핑 초대해 준 날! 진짜 감동 눈물 서사였고 절대 평생 잊지 못할 춱이야 고마워 민정아" },
+            { date: "매년 우리의 🎂", text: "서로의 생일날 다수! 생일 핑계 대고 맛있는 거 먹으면서 아주 요란법석 축하하고 세상 신나게 놀았던 모든 날들이 다 행복이었어 🥳" },
+            { date: "Loading Future... ✨", text: "그리고 앞으로 우리가 같이 채워나갈 수만 가지 추억 조각들! 언제나 곁에 있어줘서 고마워 내 칭구 민정아 💖" }
+        ];
+
+        const tooltip = document.getElementById('tooltip');
+        const tooltipImg = document.getElementById('tooltip-img');
+        const textZone = document.getElementById('tooltip-text-zone');
+        const tooltipText = document.getElementById('tooltip-text');
+
+        // [행동 1] 글귀 전용 사과 클릭 시 (사진 숨기고 텍스트만 깔끔하게 노출)
+        function showTextStory(index) {
+            tooltip.style.opacity = 0;
+            setTimeout(() => {
+                tooltipImg.style.display = "none";
+                textZone.style.display = "block";
+                
+                const data = textStories[index];
+                textZone.innerHTML = `
+                    <div class="tooltip-date">${data.date}</div>
+                    <div class="tooltip-content">${data.text.replace(/\n/g, '<br>')}</div>
+                `;
+                tooltip.style.opacity = 1;
+            }, 120);
+        }
+
+        // [행동 2] 사진 전용 열매 클릭 시 (텍스트 숨기고 pic1.jpg~pic12.jpg 사진만 노출)
+        function showPhotoStory(num) {
+            tooltip.style.opacity = 0;
+            setTimeout(() => {
+                textZone.style.display = "none";
+                
+                // 확장자가 png나 jpeg라면 아래 대소문자를 맞춰 고쳐주시면 됩니다! (.jpg 기준 세팅)
+                tooltipImg.src = `pic${num}.jpg`; 
+                tooltipImg.style.display = "block";
+                
+                tooltip.style.opacity = 1;
+            }, 120);
+        }
+
+        // 거절 버튼 미세 튕김 로직 (마우스 근방 75~100px 한정 레이아웃)
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('runaway-btn');
+
+        function setInitialNoBtn() {
+            noBtn.style.left = (yesBtn.offsetLeft + yesBtn.offsetWidth + 12) + 'px';
+            noBtn.style.top = yesBtn.offsetTop + 'px';
+        }
+        window.onload = setInitialNoBtn;
+
+        function moveNoBtn() {
+            const rect = yesBtn.getBoundingClientRect();
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 75 + Math.random() * 25; 
+            
+            const newX = rect.left + rect.width/2 + Math.cos(angle) * distance - noBtn.offsetWidth/2 + window.scrollX;
+            const newY = rect.top + rect.height/2 + Math.sin(angle) * distance - noBtn.offsetHeight/2 + window.scrollY;
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${Math.max(10, Math.min(newX, window.innerWidth - noBtn.offsetWidth - 10))}px`;
+            noBtn.style.top = `${newY}px`;
+        }
+
+        noBtn.addEventListener('mouseover', moveNoBtn);
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoBtn(); });
+
+        // 페이지 오픈 및 하트비 로직
+        function openArchive() {
+            document.getElementById('stage1').style.display = 'none';
+            const stage2 = document.getElementById('stage2');
+            stage2.style.display = 'flex';
+            setTimeout(() => { stage2.style.opacity = 1; }, 50);
+            setInterval(createHeart, 350);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-rain');
+            heart.innerText = ['💖','✨','🤍','🍎','🍊','🌸'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 12 + 15 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4500);
+        }
+    </script>
+</body>
+</html>
