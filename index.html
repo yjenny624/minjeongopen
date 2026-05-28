@@ -2,9 +2,8 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🎈 TO. 하민정 🎈</title>
-    <!-- 요청하신 외부 폰트 라이브러리 (Allura, 나눔손글씨 펜) 통합 로드 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Dongle:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
@@ -27,6 +26,7 @@
             font-family: 'Gowun Dodum', sans-serif;
             color: #4a4a4a;
             overflow-x: hidden;
+            -webkit-text-size-adjust: none; /* 모바일에서 가로 회전시 폰트 제멋대로 커지는 현상 방지 */
         }
 
         /* 배경 하트 비 효과 */
@@ -49,7 +49,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px; /* 모바일 여백 축소 */
             box-sizing: border-box;
             position: relative;
         }
@@ -58,404 +58,42 @@
         #stage1 { z-index: 10; }
         .intro-box {
             background: white;
-            padding: 40px 20px;
+            padding: 35px 20px;
             border-radius: 30px;
             box-shadow: 0 10px 30px rgba(255, 183, 197, 0.25);
             text-align: center;
             border: 2px solid var(--main-pink);
-            max-width: 360px;
-            width: 90%;
+            max-width: 340px;
+            width: 100%;
             z-index: 2;
             box-sizing: border-box;
         }
-        /* 메인 문구 이탈 방지용 가독성 압축 조정 */
         .intro-box h1 {
-            font-family: 'Gowun Dodum', sans-serif; /* 가독성을 위해 동글체에서 고운도둠체로 전환하고 안정적인 축소 */
-            font-size: 28px;
+            font-family: 'Gowun Dodum', sans-serif;
+            font-size: 26px;
             font-weight: bold;
             margin: 0 0 15px 0;
             color: var(--dark-pink);
             letter-spacing: -0.5px;
         }
         .intro-box p {
-            font-size: 15px;
+            font-size: 14px;
             color: #777;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .btn-container {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; 
+            gap: 12px; 
             width: 100%;
             height: 60px;
         }
         .btn {
-            padding: 12px 24px;
+            padding: 11px 20px;
             border: none;
             border-radius: 50px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'Gowun Dodum', sans-serif;
-            box-sizing: border-box;
-        }
-        .btn-yes {
-            background-color: var(--dark-pink);
-            color: white;
-            box-shadow: 0 4px 12px rgba(255, 123, 148, 0.3);
-            z-index: 5;
-            transition: transform 0.2s;
-        }
-        .btn-yes:hover { transform: scale(1.05); }
-        .btn-no {
-            background-color: #e0e0e0;
-            color: #999;
-            position: relative;
-            z-index: 4;
-            white-space: nowrap;
-            transition: transform 0.15s ease-out;
-            cursor: default;
-        }
-
-        /* --- STAGE 2: 메인 콘텐츠 --- */
-        #stage2 {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            padding: 20px;
-        }
-        .main-card {
-            background: white;
-            max-width: 500px;
-            width: 100%;
-            border-radius: 35px;
-            padding: 30px 25px;
-            box-shadow: 0 10px 40px rgba(255, 183, 197, 0.15);
-            border: 1px solid #fff0f2;
-            z-index: 2;
-            box-sizing: border-box;
-        }
-        .main-title {
-            font-family: 'Dongle', sans-serif;
-            font-size: 46px; 
-            margin: 0;
-            text-align: center;
-            color: var(--dark-pink);
-            line-height: 1.1;
-        }
-        /* 서브 문구 스타일 고도화 및 요청 텍스트 반영 */
-        .main-subtitle {
-            font-size: 15px;
-            font-weight: bold;
-            color: #8fa094;
-            text-align: center;
-            margin: 6px 0 20px 0;
-            letter-spacing: -0.3px;
-        }
-
-        /* 🌳 풍성한 사과나무 🌳 */
-        .tree-container {
-            position: relative;
-            width: 100%;
-            height: 340px; 
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .tree-crown {
-            position: absolute;
-            width: 380px; 
-            height: 290px;
-            background: var(--tree-green);
-            border-radius: 50% 50% 48% 48%;
-            top: 10px;
-            box-shadow: inset -15px -15px 0 var(--tree-green-shadow);
-        }
-        .tree-trunk {
-            position: absolute;
-            width: 30px;
-            height: 60px;
-            background: #c59b9b;
-            bottom: 0;
-            border-radius: 5px;
-        }
-        
-        /* 열매 디자인 */
-        .apple {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 14px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            user-select: none;
-            z-index: 3;
-        }
-        .apple::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            right: 8px;
-            width: 6px;
-            height: 4px;
-            background: #76c88b;
-            border-radius: 0 100% 0 100%;
-        }
-        .apple:hover {
-            transform: scale(1.3) rotate(10deg);
-        }
-
-        .apple.text-only {
-            background-color: var(--apple-red);
-            box-shadow: 0 4px 8px rgba(255, 107, 139, 0.3);
-        }
-        .apple.text-only.special {
-            background-color: #ffca28;
-            box-shadow: 0 4px 8px rgba(255, 202, 40, 0.4);
-        }
-        .apple.photo-only {
-            background-color: var(--photo-orange);
-            box-shadow: 0 4px 8px rgba(255, 145, 77, 0.35);
-        }
-
-        /* 💬 출력용 통합 보드 */
-        .tooltip-box {
-            background: #fff8f9;
-            border: 1.5px dashed var(--main-pink);
-            border-radius: 20px;
-            padding: 20px;
-            min-height: 80px;
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .tooltip-date {
             font-weight: bold;
-            color: var(--dark-pink);
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-        .tooltip-content {
-            font-size: 15px;
-            line-height: 1.5;
-            word-break: keep-all;
-        }
-        .tooltip-img {
-            max-width: 100%;
-            max-height: 230px;
-            border-radius: 15px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-            display: none; 
-            object-fit: contain;
-        }
-
-        /* 하단 서명란 스타일 가다듬기 */
-        .receipt-footer {
-            border-top: 2px dashed #e0e0e0;
-            padding-top: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .signature-area {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            width: 100%;
-        }
-        .sig-label {
-            font-size: 11px;
-            color: #bbb;
-            margin-bottom: 2px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        /* 폰트 Allura 입체 커스텀 매칭 */
-        .signature-text {
-            font-family: 'Allura', cursive;
-            font-size: 44px;
-            color: var(--dark-pink);
-            line-height: 0.9;
-            margin-right: 5px;
-            display: inline-block;
-        }
-        /* 폰트 나눔손글씨 펜 커스텀 매칭 */
-        .ps-text {
-            font-family: 'Nanum Pen Script', cursive;
-            font-size: 25px; /* 손글씨 서체 특성에 맞춰 크기를 가독성 좋게 키움 */
-            color: #555;
-            margin-top: 12px;
-            text-align: right;
-            line-height: 1.2;
-            word-break: keep-all;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- STAGE 1: 인트로 -->
-    <div id="stage1" class="section">
-        <div class="intro-box">
-            <h1>TO. 하민정..</h1>
-            <p>아래 버튼 눌러주세요.</p>
-            <div class="btn-container">
-                <button class="btn btn-yes" id="yes-btn" onclick="openArchive()">계속 보여줘! 💖</button>
-                <button class="btn btn-no" id="runaway-btn">안보여줘도돼 ㅠ</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- STAGE 2: 메인 콘텐츠 -->
-    <div id="stage2" class="section">
-        <div class="main-card">
-            <h1 class="main-title">추억 가득 나무..🌳</h1>
-            <!-- 요청하신 서브 문구 변경 반영 완료 -->
-            <div class="main-subtitle">🍎, 🍊 모두 눌러 확인해봐!</div>
-            
-            <div class="tree-container">
-                <div class="tree-crown"></div>
-                <div class="tree-trunk"></div>
-                
-                <!-- [빨강/골드]: 글귀 전용 사과 12개 -->
-                <div class="apple text-only" style="top: 35px; left: 110px;" onclick="showTextStory(0)">🍎</div>
-                <div class="apple text-only" style="top: 40px; left: 245px;" onclick="showTextStory(1)">🍎</div>
-                <div class="apple text-only" style="top: 85px; left: 60px;" onclick="showTextStory(2)">🍎</div>
-                <div class="apple text-only" style="top: 95px; left: 155px;" onclick="showTextStory(3)">🍎</div>
-                <div class="apple text-only" style="top: 85px; left: 300px;" onclick="showTextStory(4)">🍎</div>
-                <div class="apple text-only" style="top: 145px; left: 85px;" onclick="showTextStory(5)">🍎</div>
-                <div class="apple text-only" style="top: 150px; left: 280px;" onclick="showTextStory(6)">🍎</div>
-                <div class="apple text-only" style="top: 145px; left: 185px;" onclick="showTextStory(7)">🍎</div>
-                <div class="apple text-only" style="top: 205px; left: 120px;" onclick="showTextStory(8)">🍎</div>
-                <div class="apple text-only" style="top: 210px; left: 235px;" onclick="showTextStory(9)">🍎</div>
-                <div class="apple text-only special" style="top: 25px; left: 180px;" onclick="showTextStory(10)">🎂</div>
-                <div class="apple text-only special" style="top: 215px; left: 320px;" onclick="showTextStory(11)">✨</div>
-
-                <!-- [오렌지]: 사진 전용 열매 12개 -->
-                <div class="apple photo-only" style="top: 40px; left: 60px;" onclick="showPhotoStory(1)">🍊</div>
-                <div class="apple photo-only" style="top: 35px; left: 300px;" onclick="showPhotoStory(2)">🍊</div>
-                <div class="apple photo-only" style="top: 90px; left: 110px;" onclick="showPhotoStory(3)">🍊</div>
-                <div class="apple photo-only" style="top: 90px; left: 210px;" onclick="showPhotoStory(4)">🍊</div>
-                <div class="apple photo-only" style="top: 95px; left: 255px;" onclick="showPhotoStory(5)">🍊</div>
-                <div class="apple photo-only" style="top: 140px; left: 135px;" onclick="showPhotoStory(6)">🍊</div>
-                <div class="apple photo-only" style="top: 145px; left: 235px;" onclick="showPhotoStory(7)">🍊</div>
-                <div class="apple photo-only" style="top: 150px; left: 330px;" onclick="showPhotoStory(8)">🍊</div>
-                <div class="apple photo-only" style="top: 200px; left: 70px;" onclick="showPhotoStory(9)">🍊</div>
-                <div class="apple photo-only" style="top: 210px; left: 175px;" onclick="showPhotoStory(10)">🍊</div>
-                <div class="apple photo-only" style="top: 260px; left: 140px;" onclick="showPhotoStory(11)">🍊</div>
-                <div class="apple photo-only" style="top: 260px; left: 220px;" onclick="showPhotoStory(12)">🍊</div>
-            </div>
-
-            <div class="tooltip-box" id="tooltip">
-                <img src="" id="tooltip-img" class="tooltip-img" alt="추억 사진 스냅">
-                <div id="tooltip-text-zone">
-                    <div class="tooltip-content" id="tooltip-text" style="color: #999; font-weight: bold;">🔎 열매를 눌러봐!</div>
-                </div>
-            </div>
-
-            <div class="receipt-footer">
-                <div class="signature-area">
-                    <span class="sig-label">Signature</span>
-                    <span class="signature-text">yjenny624</span>
-                    <div class="ps-text">P.S. 항상,, 고마워,, 💗은혜,, 잊지,,않을게</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const textStories = [
-            { date: "2020년 3월 6일 🎬", text: "분더샵 BTS 논란 있던 역사적인 날ㅋㅋㅋ 우리 이때 진짜 뽀짝하고 웃겼는데 기억나? 항상 생각하면 웃음 벨이야🤣" },
-            { date: "2020년 3월 7일 🎡", text: "코로나 터졌을 때 눈치게임 대성공하며 갔던 에버랜드! 마스크 쓰고도 서로 얼굴만 보면 깔깔거리던 시절이 벌써 한참 전이네 🥺" },
-            { date: "2020년 4월 11일 🌃", text: "민우오빠 생일이라 다 같이 이태원에서 뭉쳤던 날!! 우린 뭉치면 항상 예상치 못한 추억 서사가 꼭 하나씩 생성되는 듯 크크" },
-            { date: "2020년 8월 16일 ⛰️", text: "다 함께 떠났던 대박적 충주의 추억...💚 푸릇푸릇하고 찐하게 놀았던 여름날의 기억은 아직도 사진 보면 어제 일 같아." },
-            { date: "2022년 4월 16일 🚄", text: "나랑 둘이 부산 가준 날 🎶 맛있는 거 잔뜩 먹고 바다 보면서 속 시원하게 힐링 제대로 했던 최고의 베프 여행 패키지!" },
-            { date: "2022년 12월 21일 🤢", text: "우리 집에서 하민정 대차게 술병 난 날ㅋㅋㅋ큐ㅠㅠㅠ 진짜 킹받는데 귀여운 흑역사라 내 기억 속 소중한 보물창고에 평생 소장 예정🔒" },
-            { date: "2023년 1월 5일 🌴", text: "새해 되자마자 같이 짚라인 타고 제주도로 날아갔던 날! 🌴 비행기 탈 때부터 내내 텐션 폭발해서 힐링 그 자체였던 소중한 겨울 제주!" },
-            { date: "2024년 10월 14일 🏢", text: "우리끼리 분위기 내러 롯데월드타워에서 맛있는 거 푸드파이터처럼 조진 날.. 뷰도 좋고 맛도 좋고 너랑 있어서 완벽했던 하루!" },
-            { date: "2025년 4월 5일 🌸", text: "우리 넷이서 완전체로 떠났던 도쿄 여행! 💗 벚꽃 시즌에 맞춰서 일본 길거리 뽀개고 감성 충전했던 인생 여행지 중 하나!" },
-            { date: "2026년 5월 8일 ⛺", text: "🔥 고마움 지수 별 5개 🔥\n혼자 텐트까지 영차영차 다 쳐놓고 나 캠핑 초대해 준 날! 진짜 감동 눈물 서사였고 절대 평생 잊지 못할 춱이야 고마워 민정아" },
-            { date: "매년 우리의 🎂", text: "서로의 생일날 다수! 생일 핑계 대고 맛있는 거 먹으면서 아주 요란법석 축하하고 세상 신나게 놀았던 모든 날들이 다 행복이었어 🥳" },
-            { date: "Loading Future... ✨", text: "그리고 앞으로 우리가 같이 채워나갈 수만 가지 추억 조각들! 언제나 곁에 있어줘서 고마워 내 칭구 민정아 💖" }
-        ];
-
-        const tooltip = document.getElementById('tooltip');
-        const tooltipImg = document.getElementById('tooltip-img');
-        const textZone = document.getElementById('tooltip-text-zone');
-
-        function showTextStory(index) {
-            tooltip.style.opacity = 0;
-            setTimeout(() => {
-                tooltipImg.style.display = "none";
-                textZone.style.display = "block";
-                
-                const data = textStories[index];
-                textZone.innerHTML = `
-                    <div class="tooltip-date">${data.date}</div>
-                    <div class="tooltip-content">${data.text.replace(/\n/g, '<br>')}</div>
-                `;
-                tooltip.style.opacity = 1;
-            }, 120);
-        }
-
-        function showPhotoStory(num) {
-            tooltip.style.opacity = 0;
-            setTimeout(() => {
-                textZone.style.display = "none";
-                tooltipImg.src = `pic${num}.JPG`; 
-                tooltipImg.style.display = "block";
-                tooltip.style.opacity = 1;
-            }, 120);
-        }
-
-        const noBtn = document.getElementById('runaway-btn');
-        let currentX = 0;
-        let currentY = 0;
-
-        function moveNoBtn() {
-            const randomX = (Math.random() - 0.5) * 50;
-            const randomY = (Math.random() - 0.5) * 40;
-            
-            currentX += randomX;
-            currentY += randomY;
-
-            if (Math.abs(currentX) > 45) currentX = currentX > 0 ? 45 : -45;
-            if (Math.abs(currentY) > 20) currentY = currentY > 0 ? 20 : -20;
-
-            noBtn.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        }
-
-        noBtn.addEventListener('mouseover', moveNoBtn);
-        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoBtn(); });
-
-        function openArchive() {
-            document.getElementById('stage1').style.display = 'none';
-            const stage2 = document.getElementById('stage2');
-            stage2.style.display = 'flex';
-            setTimeout(() => { stage2.style.opacity = 1; }, 50);
-            setInterval(createHeart, 350);
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-rain');
-            heart.innerText = ['💖','✨','🤍','🍎','🍊','🌸'][Math.floor(Math.random() * 6)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            heart.style.fontSize = Math.random() * 12 + 15 + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 4500);
-        }
-    </script>
-</body>
-</html>
+            cursor: pointer;
