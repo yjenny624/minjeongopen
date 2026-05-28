@@ -97,3 +97,361 @@
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
+            font-family: 'Gowun Dodum', sans-serif;
+            box-sizing: border-box;
+        }
+        .btn-yes {
+            background-color: var(--dark-pink);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 123, 148, 0.3);
+            z-index: 5;
+        }
+        .btn-no {
+            background-color: #e0e0e0;
+            color: #999;
+            position: relative;
+            z-index: 4;
+            white-space: nowrap;
+            transition: transform 0.15s ease-out;
+            cursor: default;
+        }
+
+        /* --- STAGE 2: 메인 콘텐츠 모바일 최적화 구조 --- */
+        #stage2 {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            padding: 15px 10px;
+        }
+        .main-card {
+            background: white;
+            max-width: 440px; /* PC 상한선 확보 및 모바일 유연 핏 확장 */
+            width: 100%;
+            border-radius: 30px;
+            padding: 25px 15px; /* 내부 패딩을 줄여 나무 공간 극대화 */
+            box-shadow: 0 10px 40px rgba(255, 183, 197, 0.15);
+            border: 1px solid #fff0f2;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        .main-title {
+            font-family: 'Dongle', sans-serif;
+            font-size: 42px; 
+            margin: 0;
+            text-align: center;
+            color: var(--dark-pink);
+            line-height: 1;
+        }
+        .main-subtitle {
+            font-size: 14px;
+            font-weight: bold;
+            color: #8fa094;
+            text-align: center;
+            margin: 6px 0 15px 0;
+        }
+
+        /* 🌳 모바일 스케일다운 멀티 매칭 사과나무 🌳 */
+        .tree-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* 모바일 세로 비율 압축 고정 */
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 모바일 화면이 엄청 좁을 때(아이폰 SE 등) 나무 전체가 자동으로 예쁘게 줄어들도록 튜닝 */
+            transform: scale(1);
+            transform-origin: center center;
+        }
+        .tree-crown {
+            position: absolute;
+            width: 320px; /* 폭을 380px에서 320px로 모바일 슬림화 */
+            height: 260px;
+            background: var(--tree-green);
+            border-radius: 50%;
+            top: 5px;
+            box-shadow: inset -12px -12px 0 var(--tree-green-shadow);
+        }
+        .tree-trunk {
+            position: absolute;
+            width: 24px;
+            height: 45px;
+            background: #c59b9b;
+            bottom: 0;
+            border-radius: 5px;
+        }
+        
+        /* 열매 터치 영역 최적화 및 배치 비율 압축 */
+        .apple {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+            z-index: 3;
+            -webkit-tap-highlight-color: transparent; /* 모바일 터치시 파란 박스 생기는 현상 제거 */
+        }
+        .apple::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: 6px;
+            width: 5px;
+            height: 3px;
+            background: #76c88b;
+            border-radius: 0 100% 0 100%;
+        }
+
+        .apple.text-only {
+            background-color: var(--apple-red);
+            box-shadow: 0 3px 6px rgba(255, 107, 139, 0.3);
+        }
+        .apple.text-only.special {
+            background-color: #ffca28;
+            box-shadow: 0 3px 6px rgba(255, 202, 40, 0.4);
+        }
+        .apple.photo-only {
+            background-color: var(--photo-orange);
+            box-shadow: 0 3px 6px rgba(255, 145, 77, 0.35);
+        }
+
+        /* 💬 모바일 반응형 툴팁 보드 */
+        .tooltip-box {
+            background: #fff8f9;
+            border: 1.5px dashed var(--main-pink);
+            border-radius: 20px;
+            padding: 15px;
+            min-height: 80px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .tooltip-date {
+            font-weight: bold;
+            color: var(--dark-pink);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .tooltip-content {
+            font-size: 14px;
+            line-height: 1.45;
+            word-break: keep-all;
+        }
+        .tooltip-img {
+            max-width: 100%;
+            max-height: 200px; /* 모바일 전용 세로 상한선 확보 */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: none; 
+            object-fit: contain;
+        }
+
+        /* 하단 서명란 모바일 압축 자수 핏 */
+        .receipt-footer {
+            border-top: 2px dashed #e0e0e0;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .signature-area {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100%;
+        }
+        .sig-label {
+            font-size: 10px;
+            color: #ccc;
+            margin-bottom: 1px;
+            letter-spacing: 0.5px;
+        }
+        .signature-text {
+            font-family: 'Allura', cursive;
+            font-size: 40px;
+            color: var(--dark-pink);
+            line-height: 0.9;
+            margin-right: 5px;
+            display: inline-block;
+        }
+        .ps-text {
+            font-family: 'Nanum Pen Script', cursive;
+            font-size: 22px; 
+            color: #555;
+            margin-top: 8px;
+            text-align: right;
+            line-height: 1.2;
+            word-break: keep-all;
+        }
+
+        /* 화면 폭이 극단적으로 좁은 초소형 모바일 기기(너비 350px 이하) 대응용 강제 스케일링 */
+        @media (max-width: 350px) {
+            .tree-container {
+                transform: scale(0.88);
+            }
+            .main-title { font-size: 36px; }
+            .ps-text { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="stage1" class="section">
+        <div class="intro-box">
+            <h1>TO. 하민정..</h1>
+            <p>아래 버튼 눌러주세요.</p>
+            <div class="btn-container">
+                <button class="btn btn-yes" id="yes-btn" onclick="openArchive()">계속 보여줘! 💖</button>
+                <button class="btn btn-no" id="runaway-btn">안보여줘도돼 ㅠ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="stage2" class="section">
+        <div class="main-card">
+            <h1 class="main-title">추억 가득 나무..🌳</h1>
+            <div class="main-subtitle">🍎, 🍊 모두 눌러 확인해봐!</div>
+            
+            <div class="tree-container">
+                <div class="tree-crown"></div>
+                <div class="tree-trunk"></div>
+                
+                <div class="apple text-only" style="top: 30px; left: 110px;" onclick="showTextStory(0)">🍎</div>
+                <div class="apple text-only" style="top: 35px; left: 210px;" onclick="showTextStory(1)">🍎</div>
+                <div class="apple text-only" style="top: 75px; left: 65px;" onclick="showTextStory(2)">🍎</div>
+                <div class="apple text-only" style="top: 85px; left: 145px;" onclick="showTextStory(3)">🍎</div>
+                <div class="apple text-only" style="top: 75px; left: 255px;" onclick="showTextStory(4)">🍎</div>
+                <div class="apple text-only" style="top: 130px; left: 85px;" onclick="showTextStory(5)">🍎</div>
+                <div class="apple text-only" style="top: 135px; left: 240px;" onclick="showTextStory(6)">🍎</div>
+                <div class="apple text-only" style="top: 130px; left: 165px;" onclick="showTextStory(7)">🍎</div>
+                <div class="apple text-only" style="top: 185px; left: 115px;" onclick="showTextStory(8)">🍎</div>
+                <div class="apple text-only" style="top: 190px; left: 205px;" onclick="showTextStory(9)">🍎</div>
+                <div class="apple text-only special" style="top: 20px; left: 160px;" onclick="showTextStory(10)">🎂</div>
+                <div class="apple text-only special" style="top: 195px; left: 270px;" onclick="showTextStory(11)">✨</div>
+
+                <div class="apple photo-only" style="top: 35px; left: 65px;" onclick="showPhotoStory(1)">🍊</div>
+                <div class="apple photo-only" style="top: 30px; left: 255px;" onclick="showPhotoStory(2)">🍊</div>
+                <div class="apple photo-only" style="top: 80px; left: 105px;" onclick="showPhotoStory(3)">🍊</div>
+                <div class="apple photo-only" style="top: 80px; left: 185px;" onclick="showPhotoStory(4)">🍊</div>
+                <div class="apple photo-only" style="top: 85px; left: 220px;" onclick="showPhotoStory(5)">🍊</div>
+                <div class="apple photo-only" style="top: 125px; left: 125px;" onclick="showPhotoStory(6)">🍊</div>
+                <div class="apple photo-only" style="top: 130px; left: 205px;" onclick="showPhotoStory(7)">🍊</div>
+                <div class="apple photo-only" style="top: 135px; left: 280px;" onclick="showPhotoStory(8)">🍊</div>
+                <div class="apple photo-only" style="top: 180px; left: 75px;" onclick="showPhotoStory(9)">🍊</div>
+                <div class="apple photo-only" style="top: 190px; left: 160px;" onclick="showPhotoStory(10)">🍊</div>
+                <div class="apple photo-only" style="top: 235px; left: 130px;" onclick="showPhotoStory(11)">🍊</div>
+                <div class="apple photo-only" style="top: 235px; left: 195px;" onclick="showPhotoStory(12)">🍊</div>
+            </div>
+
+            <div class="tooltip-box" id="tooltip">
+                <img src="" id="tooltip-img" class="tooltip-img" alt="추억 사진 스냅">
+                <div id="tooltip-text-zone">
+                    <div class="tooltip-content" id="tooltip-text" style="color: #999; font-weight: bold;">🔎 열매를 눌러봐!</div>
+                </div>
+            </div>
+
+            <div class="receipt-footer">
+                <div class="signature-area">
+                    <span class="sig-label">Signature</span>
+                    <span class="signature-text">yjenny624</span>
+                    <div class="ps-text">P.S. 항상,, 고마워,, 💗은혜,, 잊지,,않을게</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textStories = [
+            { date: "2020년 3월 6일 🎬", text: "분더샵 BTS 논란 있던 역사적인 날ㅋㅋㅋ 우리 이때 진짜 뽀짝하고 웃겼는데 기억나? 항상 생각하면 웃음 벨이야🤣" },
+            { date: "2020년 3월 7일 🎡", text: "코로나 터졌을 때 눈치게임 대성공하며 갔던 에버랜드! 마스크 쓰고도 서로 얼굴만 보면 깔깔거리던 시절이 벌써 한참 전이네 🥺" },
+            { date: "2020년 4월 11일 🌃", text: "민우오빠 생일이라 다 같이 이태원에서 뭉쳤던 날!! 우린 뭉치면 항상 예상치 못한 추억 서사가 꼭 하나씩 생성되는 듯 크크" },
+            { date: "2020년 8월 16일 ⛰️", text: "다 함께 떠났던 대박적 충주의 추억...💚 푸릇푸릇하고 찐하게 놀았던 여름날의 기억은 아직도 사진 보면 어제 일 같아." },
+            { date: "2022년 4월 16일 🚄", text: "나랑 둘이 부산 가준 날 🎶 맛있는 거 잔뜩 먹고 바다 보면서 속 시원하게 힐링 제대로 했던 최고의 베프 여행 패키지!" },
+            { date: "2022년 12월 21일 🤢", text: "우리 집에서 하민정 대차게 술병 난 날ㅋㅋㅋ큐ㅠㅠㅠ 진짜 킹받는데 귀여운 흑역사라 내 기억 속 소중한 보물창고에 평생 소장 예정🔒" },
+            { date: "2023년 1월 5일 🌴", text: "새해 되자마자 같이 짚라인 타고 제주도로 날아갔던 날! 🌴 비행기 탈 때부터 내내 텐션 폭발해서 힐링 그 자체였던 소중한 겨울 제주!" },
+            { date: "2024년 10월 14일 🏢", text: "우리끼리 분위기 내러 롯데월드타워에서 맛있는 거 푸드파이터처럼 조진 날.. 뷰도 좋고 맛도 좋고 너랑 있어서 완벽했던 하루!" },
+            { date: "2025년 4월 5일 🌸", text: "우리 넷이서 완전체로 떠났던 도쿄 여행! 💗 벚꽃 시즌에 맞춰서 일본 길거리 뽀개고 감성 충전했던 인생 여행지 중 하나!" },
+            { date: "2026년 5월 8일 ⛺", text: "🔥 고마움 지수 별 5개 🔥\n혼자 텐트까지 영차영차 다 쳐놓고 나 캠핑 초대해 준 날! 진짜 감동 눈물 서사였고 절대 평생 잊지 못할 춱이야 고마워 민정아" },
+            { date: "매년 우리의 🎂", text: "서로의 생일날 다수! 생일 핑계 대고 맛있는 거 먹으면서 아주 요란법석 축하하고 세상 신나게 놀았던 모든 날들이 다 행복이었어 🥳" },
+            { date: "Loading Future... ✨", text: "그리고 앞으로 우리가 같이 채워나갈 수만 가지 추억 조각들! 언제나 곁에 있어줘서 고마워 내 칭구 민정아 💖" }
+        ];
+
+        const tooltip = document.getElementById('tooltip');
+        const tooltipImg = document.getElementById('tooltip-img');
+        const textZone = document.getElementById('tooltip-text-zone');
+
+        function showTextStory(index) {
+            tooltip.style.opacity = 0;
+            setTimeout(() => {
+                tooltipImg.style.display = "none";
+                textZone.style.display = "block";
+                
+                const data = textStories[index];
+                textZone.innerHTML = `
+                    <div class="tooltip-date">${data.date}</div>
+                    <div class="tooltip-content">${data.text.replace(/\n/g, '<br>')}</div>
+                `;
+                tooltip.style.opacity = 1;
+            }, 120);
+        }
+
+        function showPhotoStory(num) {
+            tooltip.style.opacity = 0;
+            setTimeout(() => {
+                textZone.style.display = "none";
+                tooltipImg.src = `pic${num}.JPG`; 
+                tooltipImg.style.display = "block";
+                tooltip.style.opacity = 1;
+            }, 120);
+        }
+
+        const noBtn = document.getElementById('runaway-btn');
+        let currentX = 0;
+        let currentY = 0;
+
+        function moveNoBtn() {
+            const randomX = (Math.random() - 0.5) * 40;
+            const randomY = (Math.random() - 0.5) * 30;
+            
+            currentX += randomX;
+            currentY += randomY;
+
+            if (Math.abs(currentX) > 40) currentX = currentX > 0 ? 40 : -40;
+            if (Math.abs(currentY) > 15) currentY = currentY > 0 ? 15 : -15;
+
+            noBtn.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }
+
+        noBtn.addEventListener('mouseover', moveNoBtn);
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoBtn(); });
+
+        function openArchive() {
+            document.getElementById('stage1').style.display = 'none';
+            const stage2 = document.getElementById('stage2');
+            stage2.style.display = 'flex';
+            setTimeout(() => { stage2.style.opacity = 1; }, 50);
+            setInterval(createHeart, 350);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-rain');
+            heart.innerText = ['💖','✨','🤍','🍎','🍊','🌸'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 10 + 12 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4500);
+        }
+    </script>
+</body>
+</html>
